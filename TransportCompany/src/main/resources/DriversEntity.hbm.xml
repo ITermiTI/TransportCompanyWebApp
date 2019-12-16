@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.AleksandraAndPawel.TransportCompany.DriversEntity" table="drivers" schema="systransport">
+        <id name="driverId" column="driver_id"/>
+        <property name="driverName" column="driver_name"/>
+        <property name="driverSurname" column="driver_surname"/>
+        <property name="driverEmail" column="driver_email"/>
+        <property name="driverPesel" column="driver_PESEL"/>
+        <property name="driverPhoneNumber" column="driver_phone_number"/>
+        <property name="accountId" column="account_id"/>
+        <many-to-one name="userAccountsByAccountId" class="com.AleksandraAndPawel.TransportCompany.UserAccountsEntity">
+            <column name="account_id"/>
+        </many-to-one>
+        <set name="carsByDriverId" inverse="true">
+            <key>
+                <column name="driver_id" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.CarsEntity"/>
+        </set>
+        <set name="transportsByDriverId" inverse="true">
+            <key>
+                <column name="driver_id" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.TransportsEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
