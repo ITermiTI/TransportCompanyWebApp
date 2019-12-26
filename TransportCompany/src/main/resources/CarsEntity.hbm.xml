@@ -4,14 +4,14 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.AleksandraAndPawel.TransportCompany.CarsEntity" table="cars" schema="systransport">
+    <class name="com.AleksandraAndPawel.transportcompany.model.CarsEntity" table="cars" schema="systransport">
         <id name="carId" column="car_id"/>
         <property name="carRegNumber" column="car_reg_number"/>
         <property name="carryingCapacity" column="carrying_capacity"/>
         <property name="carType" column="car_type"/>
         <property name="carStatus" column="car_status"/>
         <property name="driverId" column="driver_id"/>
-        <many-to-one name="driversByDriverId" class="com.AleksandraAndPawel.TransportCompany.DriversEntity">
+        <many-to-one name="driversByDriverId" class="com.AleksandraAndPawel.transportcompany.model.DriversEntity">
             <column name="driver_id" not-null="true"/>
         </many-to-one>
     </class>

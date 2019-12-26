@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.AleksandraAndPawel.TransportCompany.DriversEntity" table="drivers" schema="systransport">
+    <class name="com.AleksandraAndPawel.transportcompany.model.DriversEntity" table="drivers" schema="systransport">
         <id name="driverId" column="driver_id"/>
         <property name="driverName" column="driver_name"/>
         <property name="driverSurname" column="driver_surname"/>
@@ -12,20 +12,20 @@
         <property name="driverPesel" column="driver_PESEL"/>
         <property name="driverPhoneNumber" column="driver_phone_number"/>
         <property name="accountId" column="account_id"/>
-        <many-to-one name="userAccountsByAccountId" class="com.AleksandraAndPawel.TransportCompany.UserAccountsEntity">
+        <many-to-one name="userAccountsByAccountId" class="com.AleksandraAndPawel.transportcompany.model.UserAccountsEntity">
             <column name="account_id"/>
         </many-to-one>
         <set name="carsByDriverId" inverse="true">
             <key>
                 <column name="driver_id" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.CarsEntity"/>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.transportcompany.model.CarsEntity"/>
         </set>
         <set name="transportsByDriverId" inverse="true">
             <key>
                 <column name="driver_id" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.TransportsEntity"/>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.transportcompany.model.TransportsEntity"/>
         </set>
     </class>
 </hibernate-mapping>

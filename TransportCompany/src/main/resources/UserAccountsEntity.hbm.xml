@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.AleksandraAndPawel.TransportCompany.UserAccountsEntity" table="user_accounts"
+    <class name="com.AleksandraAndPawel.transportcompany.model.UserAccountsEntity" table="user_accounts"
            schema="systransport">
         <id name="accountId" column="account_id"/>
         <property name="loginEmail" column="login_email"/>
@@ -15,13 +15,13 @@
             <key>
                 <column name="account_id"/>
             </key>
-            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.ClientsEntity"/>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.transportcompany.model.ClientsEntity"/>
         </set>
         <set name="driversByAccountId" inverse="true">
             <key>
                 <column name="account_id"/>
             </key>
-            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.DriversEntity"/>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.transportcompany.model.DriversEntity"/>
         </set>
     </class>
 </hibernate-mapping>

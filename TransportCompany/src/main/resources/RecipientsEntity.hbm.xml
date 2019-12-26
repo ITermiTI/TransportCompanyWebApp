@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.AleksandraAndPawel.TransportCompany.RecipientsEntity" table="recipients" schema="systransport">
+    <class name="com.AleksandraAndPawel.transportcompany.model.RecipientsEntity" table="recipients" schema="systransport">
         <id name="recipientId" column="recipient_id"/>
         <property name="recipientName" column="recipient_name"/>
         <property name="recipientSurname" column="recipient_surname"/>
@@ -15,7 +15,7 @@
             <key>
                 <column name="recipient_id"/>
             </key>
-            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.PackagesEntity"/>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.transportcompany.model.PackagesEntity"/>
         </set>
     </class>
 </hibernate-mapping>
