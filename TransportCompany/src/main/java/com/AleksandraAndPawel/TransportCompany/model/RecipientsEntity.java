@@ -1,8 +1,13 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
+import javax.persistence.*;
 import java.util.Collection;
-
+//@Entity
+@Table(name ="recipients")
 public class RecipientsEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int recipientId;
     private String recipientName;
     private String recipientSurname;

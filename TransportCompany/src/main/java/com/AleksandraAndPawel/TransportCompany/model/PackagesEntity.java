@@ -1,13 +1,17 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
-
+//@Entity
+@Table(name ="packages")
 public class PackagesEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int packageId;
-    private Object packageType;
-    private Object packageStatus;
+    private PackageType packageType;
+    private PackageStatus packageStatus;
     private BigDecimal packageWeight;
     private BigDecimal packagePrice;
     private String packagePriority;
@@ -32,7 +36,7 @@ public class PackagesEntity {
         return packageType;
     }
 
-    public void setPackageType(Object packageType) {
+    public void setPackageType(PackageType packageType) {
         this.packageType = packageType;
     }
 
@@ -40,7 +44,7 @@ public class PackagesEntity {
         return packageStatus;
     }
 
-    public void setPackageStatus(Object packageStatus) {
+    public void setPackageStatus(PackageStatus packageStatus) {
         this.packageStatus = packageStatus;
     }
 

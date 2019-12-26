@@ -1,11 +1,16 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
+import javax.persistence.*;
 import java.util.Collection;
 
+//@Entity
+@Table(name ="transports")
 public class TransportsEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int transportId;
     private String transportCity;
-    private Object transportStatus;
+    private TransportStatus transportStatus;
     private Integer driverId;
     private Collection<PackagesEntity> packagesByTransportId;
     private DriversEntity driversByDriverId;
@@ -30,7 +35,7 @@ public class TransportsEntity {
         return transportStatus;
     }
 
-    public void setTransportStatus(Object transportStatus) {
+    public void setTransportStatus(TransportStatus transportStatus) {
         this.transportStatus = transportStatus;
     }
 

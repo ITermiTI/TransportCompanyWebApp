@@ -1,5 +1,6 @@
 package com.AleksandraAndPawel.transportcompany;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
@@ -8,7 +9,7 @@ public class TransportCompanyApplication {
 
 	public static void main(String[] args) {
 
-		//SpringApplication.run(TransportCompanyApplication.class, args);
+		SpringApplication.run(TransportCompanyApplication.class, args);
 	}
 
 }

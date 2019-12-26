@@ -1,15 +1,22 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
-@Entity
+//@Entity
+@Table(name = "cars")
 public class CarsEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int carId;
     private String carRegNumber;
     private BigDecimal carryingCapacity;
-    private Object carType;
-    private Object carStatus;
+    @Enumerated(EnumType.STRING)
+    private CarType carType;
+    @Enumerated(EnumType.STRING)
+    private CarStatus carStatus;
     private Integer driverId;
+    @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "driver_id", referencedColumnName = "car_id")
     private DriversEntity driversByDriverId;
 
     public int getCarId() {
@@ -40,7 +47,7 @@ public class CarsEntity {
         return carType;
     }
 
-    public void setCarType(Object carType) {
+    public void setCarType(CarType carType) {
         this.carType = carType;
     }
 
@@ -48,7 +55,7 @@ public class CarsEntity {
         return carStatus;
     }
 
-    public void setCarStatus(Object carStatus) {
+    public void setCarStatus(CarStatus carStatus) {
         this.carStatus = carStatus;
     }
 

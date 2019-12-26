@@ -1,6 +1,12 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
+import javax.persistence.*;
+
+//@Entity
+@Table(name ="reviews")
 public class ReviewsEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int reviewId;
     private Object stars;
     private String content;

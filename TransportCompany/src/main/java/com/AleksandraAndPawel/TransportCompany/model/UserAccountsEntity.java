@@ -1,16 +1,19 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 
+@Entity
+@Table(name ="user_accounts")
 public class UserAccountsEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int accountId;
     private String loginEmail;
     private String isEnabled;
     private String passwordHash;
     private Timestamp dateCreated;
-    private Collection<ClientsEntity> clientsByAccountId;
-    private Collection<DriversEntity> driversByAccountId;
 
     public int getAccountId() {
         return accountId;
@@ -78,19 +81,4 @@ public class UserAccountsEntity {
         return result;
     }
 
-    public Collection<ClientsEntity> getClientsByAccountId() {
-        return clientsByAccountId;
-    }
-
-    public void setClientsByAccountId(Collection<ClientsEntity> clientsByAccountId) {
-        this.clientsByAccountId = clientsByAccountId;
-    }
-
-    public Collection<DriversEntity> getDriversByAccountId() {
-        return driversByAccountId;
-    }
-
-    public void setDriversByAccountId(Collection<DriversEntity> driversByAccountId) {
-        this.driversByAccountId = driversByAccountId;
-    }
 }

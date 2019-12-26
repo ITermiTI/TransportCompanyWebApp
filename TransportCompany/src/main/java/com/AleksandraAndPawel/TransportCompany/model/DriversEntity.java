@@ -1,8 +1,15 @@
 package com.AleksandraAndPawel.transportcompany.model;
 
-import java.util.Collection;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
+import javax.persistence.*;
+import java.util.Collection;
+//@Entity
+@Table(name ="drivers")
 public class DriversEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int driverId;
     private String driverName;
     private String driverSurname;
@@ -10,9 +17,9 @@ public class DriversEntity {
     private String driverPesel;
     private String driverPhoneNumber;
     private int accountId;
-    private Collection<CarsEntity> carsByDriverId;
+    @OneToOne
+    @NotFound(action=NotFoundAction.IGNORE)
     private UserAccountsEntity userAccountsByAccountId;
-    private Collection<TransportsEntity> transportsByDriverId;
 
     public int getDriverId() {
         return driverId;
@@ -102,14 +109,6 @@ public class DriversEntity {
         return result;
     }
 
-    public Collection<CarsEntity> getCarsByDriverId() {
-        return carsByDriverId;
-    }
-
-    public void setCarsByDriverId(Collection<CarsEntity> carsByDriverId) {
-        this.carsByDriverId = carsByDriverId;
-    }
-
     public UserAccountsEntity getUserAccountsByAccountId() {
         return userAccountsByAccountId;
     }
@@ -118,11 +117,4 @@ public class DriversEntity {
         this.userAccountsByAccountId = userAccountsByAccountId;
     }
 
-    public Collection<TransportsEntity> getTransportsByDriverId() {
-        return transportsByDriverId;
-    }
-
-    public void setTransportsByDriverId(Collection<TransportsEntity> transportsByDriverId) {
-        this.transportsByDriverId = transportsByDriverId;
-    }
 }
