@@ -1,4 +1,4 @@
-package com.AleksandraAndPawel.TransportCompany;
+package com.AleksandraAndPawel.transportcompany;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
