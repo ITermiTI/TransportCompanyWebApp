@@ -13,7 +13,7 @@ public class CarTypeConverter implements AttributeConverter<CarType, String> {
             return null;
 
         return attribute.getType();
-    }
+}
 
     @Override
     public CarType convertToEntityAttribute(String dbData) {

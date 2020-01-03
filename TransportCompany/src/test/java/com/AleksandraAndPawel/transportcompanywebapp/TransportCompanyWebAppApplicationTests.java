@@ -4,11 +4,10 @@ import com.AleksandraAndPawel.transportcompanywebapp.Models.*;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.ICarsDao;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IRecipientDao;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IUserAccountsDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IPackagesDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +20,11 @@ class TransportCompanyWebAppApplicationTests {
     IRecipientDao recipientDao;
     @Autowired
     ICarsDao carsDao;
+
+    @Autowired
+    private IPackagesDao packagesDao;
+
+
     @Test
     public void testGetUserById()
     {
@@ -66,10 +70,14 @@ class TransportCompanyWebAppApplicationTests {
    }*/
 
    @Test
-    public void testCarStatusMappedProperly()
-   {
+   public void testPackageEntity() {
+      PackagesEntity packagesEntity = packagesDao.getById(1);
+      assertNotNull(packagesEntity);
+   }
+
+   @Test
+   public void testCarStatusMappedProperly() {
        CarsEntity car = carsDao.getById(3);
        assertEquals(car.getCarStatus(),CarStatus.PRZYDZIELONO_TRANSPORT);
    }
-
 }
