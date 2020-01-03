@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.AleksandraAndPawel.TransportCompany.TransportsEntity" table="transports" schema="systransport">
+        <id name="transportId" column="transport_id"/>
+        <property name="transportCity" column="transport_city"/>
+        <property name="transportStatus" column="transport_status"/>
+        <property name="driverId" column="driver_id"/>
+        <many-to-one name="driversByDriverId" class="com.AleksandraAndPawel.TransportCompany.DriversEntity">
+            <column name="driver_id" not-null="true"/>
+        </many-to-one>
+        <set name="packagesByTransportId" inverse="true">
+            <key>
+                <column name="transport_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.PackagesEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

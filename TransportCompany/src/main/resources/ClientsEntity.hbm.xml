@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.AleksandraAndPawel.TransportCompany.ClientsEntity" table="clients" schema="systransport">
+        <id name="clientId" column="client_id"/>
+        <property name="clientName" column="client_name"/>
+        <property name="clientSurname" column="client_surname"/>
+        <property name="clientEmail" column="client_email"/>
+        <property name="clientAddress" column="client_address"/>
+        <property name="clientPesel" column="client_PESEL"/>
+        <property name="clientPhoneNumber" column="client_phone_number"/>
+        <property name="clientCity" column="client_city"/>
+        <property name="accountId" column="account_id"/>
+        <many-to-one name="userAccountsByAccountId" class="com.AleksandraAndPawel.TransportCompany.UserAccountsEntity">
+            <column name="account_id"/>
+        </many-to-one>
+        <set name="packagesByClientId" inverse="true">
+            <key>
+                <column name="client_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.AleksandraAndPawel.TransportCompany.PackagesEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
