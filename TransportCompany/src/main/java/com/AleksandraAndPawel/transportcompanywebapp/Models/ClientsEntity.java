@@ -1,17 +1,17 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Collection;
 
-//@Entity
+@Entity
 @Table(name = "clients", schema = "systransport")
 @EntityListeners(AuditingEntityListener.class)
 public class ClientsEntity {
     @Id
     @Column(name = "client_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clientId;
     @Column(name = "client_name", nullable = false, length = 255)
     private String clientName;
@@ -29,8 +29,8 @@ public class ClientsEntity {
     private String clientCity;
     @Column(name = "account_id", nullable = false)
     private int accountId;
-    private UserAccountsEntity userAccountsByAccountId;
-    private Collection<PackagesEntity> packagesByClientId;
+    //private UserAccountsEntity userAccountsByAccountId;
+    //private Collection<PackagesEntity> packagesByClientId;
 
     public int getClientId() {
         return clientId;
@@ -149,7 +149,7 @@ public class ClientsEntity {
         return result;
     }
 
-    public Collection<PackagesEntity> getPackagesByClientId() {
+    /*public Collection<PackagesEntity> getPackagesByClientId() {
         return packagesByClientId;
     }
 
@@ -163,5 +163,5 @@ public class ClientsEntity {
 
     public void setUserAccountsByAccountId(UserAccountsEntity userAccountsByAccountId) {
         this.userAccountsByAccountId = userAccountsByAccountId;
-    }
+    }*/
 }

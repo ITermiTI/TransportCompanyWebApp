@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 public enum CarStatus {
     OCZEKUJE_NA_PRYDZIELENIE("Oczekuje na przydzielenie"),

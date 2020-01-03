@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class DriversEntity {
     @Id
     @Column(name = "driver_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int driverId;
     @Basic
     @Column(name = "driver_name", nullable = false, length = 255)

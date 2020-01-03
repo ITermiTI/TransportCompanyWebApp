@@ -1,17 +1,16 @@
-package com.aleksandraandpawel.transportcompanywebapp;
+package com.AleksandraAndPawel.transportcompanywebapp;
 
-import com.aleksandraandpawel.transportcompanywebapp.Models.*;
-import com.aleksandraandpawel.transportcompanywebapp.Repositories.ICarsDao;
-import com.aleksandraandpawel.transportcompanywebapp.Repositories.IRecipientDao;
-import com.aleksandraandpawel.transportcompanywebapp.Repositories.IUserAccountsDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Models.*;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.ICarsDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IRecipientDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IUserAccountsDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-import java.util.Optional;
+import java.sql.Timestamp;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class TransportCompanyWebAppApplicationTests {
@@ -49,5 +48,28 @@ class TransportCompanyWebAppApplicationTests {
     @Test
     void contextLoads() {
     }
+   /* @Test
+    public void testCreateUser()
+    {
+        UserAccountsEntity user = new UserAccountsEntity();
+        user.setIsEnabled("1");
+        user.setLoginEmail("test@test.pl");
+        user.setDateCreated(Timestamp.valueOf("2019-02-02 00:00:00"));
+        user.setPasswordHash("123");
+        assertNotNull(userAccountsDao.add(user));
+    }*/
+   /*@Test
+    public void testDeleteById()
+   {
+       userAccountsDao.removeById(121);
+       assertNull(userAccountsDao.getById(121));
+   }*/
+
+   @Test
+    public void testCarStatusMappedProperly()
+   {
+       CarsEntity car = carsDao.getById(3);
+       assertEquals(car.getCarStatus(),CarStatus.PRZYDZIELONO_TRANSPORT);
+   }
 
 }

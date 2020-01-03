@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 public class TransportsEntity {
     @Id
     @Column(name = "transport_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transportId;
     @Basic
     @Column(name = "transport_city", nullable = false, length = 255)

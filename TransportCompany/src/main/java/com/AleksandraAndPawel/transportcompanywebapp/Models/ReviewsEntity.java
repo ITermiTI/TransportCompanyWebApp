@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

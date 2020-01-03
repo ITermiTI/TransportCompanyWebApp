@@ -1,7 +1,7 @@
-package com.aleksandraandpawel.transportcompanywebapp.Config;
+package com.AleksandraAndPawel.transportcompanywebapp.Config;
 
-import com.aleksandraandpawel.transportcompanywebapp.Models.CarStatus;
-import com.aleksandraandpawel.transportcompanywebapp.Models.CarType;
+import com.AleksandraAndPawel.transportcompanywebapp.Models.CarStatus;
+import com.AleksandraAndPawel.transportcompanywebapp.Models.CarType;
 
 import javax.persistence.AttributeConverter;
 

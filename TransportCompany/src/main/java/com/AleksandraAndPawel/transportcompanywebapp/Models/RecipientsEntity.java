@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 public class RecipientsEntity {
     @Id
     @Column(name = "recipient_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int recipientId;
     @Basic
     @Column(name = "recipient_name", nullable = false, length = 255)

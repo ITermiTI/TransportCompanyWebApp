@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Config;
+package com.AleksandraAndPawel.transportcompanywebapp.Config;
 import java.util.Properties;
 
 import javax.sql.DataSource;

@@ -1,9 +1,10 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 public class UserAccountsEntity {
     @Id
     @Column(name = "account_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
     @NotBlank
     @Column(name = "login_email")
@@ -23,7 +24,6 @@ public class UserAccountsEntity {
     @NotBlank
     @Column(name = "password_hash")
     private String passwordHash;
-    @NotBlank
     @Column(name = "date_created")
     private Timestamp dateCreated;
 

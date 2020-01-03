@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp.Controllers;
+package com.AleksandraAndPawel.transportcompanywebapp.Controllers;
 
 
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,9 @@
-package com.aleksandraandpawel.transportcompanywebapp.Services;
+package com.AleksandraAndPawel.transportcompanywebapp.Services;
 
-import com.aleksandraandpawel.transportcompanywebapp.Models.UserAccountsEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Models.UserAccountsEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IClientsDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IDriverDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +17,8 @@ public class DatabaseUserDetails implements UserDetails {
     private String password;
     private boolean enabled;
     private SimpleGrantedAuthority authority;
+    @Autowired
+    IDriverDao driverDao;
 
     public DatabaseUserDetails(UserAccountsEntity user) {
 
@@ -22,7 +27,10 @@ public class DatabaseUserDetails implements UserDetails {
         if(user.getIsEnabled().equals("0"))
             enabled=false;
         else enabled=true;
-        authority=new SimpleGrantedAuthority("DRIVER");
+        if(driverDao.getById(user.getAccountId())!=null)
+            authority=new SimpleGrantedAuthority("DRIVER");
+        else
+            authority=new SimpleGrantedAuthority("CLIENT");
     }
 
     @Override

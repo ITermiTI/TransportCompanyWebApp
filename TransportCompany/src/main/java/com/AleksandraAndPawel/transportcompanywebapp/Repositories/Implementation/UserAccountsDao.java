@@ -1,18 +1,15 @@
-package com.aleksandraandpawel.transportcompanywebapp.Repositories;
+package com.AleksandraAndPawel.transportcompanywebapp.Repositories.Implementation;
 
-import com.aleksandraandpawel.transportcompanywebapp.Models.UserAccountsEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Models.UserAccountsEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IUserAccountsDao;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
 @Transactional
-public class UserAccountsDao extends GenericDao<UserAccountsEntity> implements IUserAccountsDao{
+public class UserAccountsDao extends GenericDao<UserAccountsEntity> implements IUserAccountsDao {
     @Override
     public UserAccountsEntity getUserByLogin(String login_email) {
 

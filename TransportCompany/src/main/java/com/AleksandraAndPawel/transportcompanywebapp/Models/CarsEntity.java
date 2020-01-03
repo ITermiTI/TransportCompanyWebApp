@@ -1,7 +1,7 @@
-package com.aleksandraandpawel.transportcompanywebapp.Models;
+package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
-import com.aleksandraandpawel.transportcompanywebapp.Config.CarStatusConverter;
-import com.aleksandraandpawel.transportcompanywebapp.Config.CarTypeConverter;
+import com.AleksandraAndPawel.transportcompanywebapp.Config.CarStatusConverter;
+import com.AleksandraAndPawel.transportcompanywebapp.Config.CarTypeConverter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 public class CarsEntity {
     @Id
     @Column(name = "car_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carId;
     @Column(name = "car_reg_number", nullable = false, length = 255)
     private String carRegNumber;

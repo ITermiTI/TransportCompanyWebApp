@@ -1,12 +1,11 @@
-package com.aleksandraandpawel.transportcompanywebapp.Repositories;
+package com.AleksandraAndPawel.transportcompanywebapp.Repositories.Implementation;
 
-import com.aleksandraandpawel.transportcompanywebapp.Models.UserAccountsEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IGenericDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public abstract class GenericDao<T> implements IGenericDao<T>{
+public abstract class GenericDao<T> implements IGenericDao<T> {
 
     private Class<T> tClass;
 
@@ -43,5 +42,29 @@ public abstract class GenericDao<T> implements IGenericDao<T>{
     @Override
     public List<T> getAll() {
         return (List<T>) getSession().createCriteria(tClass).list();
+    }
+
+
+
+    @Override
+    public T add(T entity) {
+        getSession().saveOrUpdate(entity);
+        return entity;
+    }
+
+    @Override
+    public T update(T entity) {
+        return (T)getSession().merge(entity);
+    }
+
+    @Override
+    public void remove(T entity) {
+        getSession().delete(entity);
+    }
+
+    @Override
+    public void removeById(int id) {
+        T entity = getById(id);
+        getSession().delete(entity);
     }
 }
