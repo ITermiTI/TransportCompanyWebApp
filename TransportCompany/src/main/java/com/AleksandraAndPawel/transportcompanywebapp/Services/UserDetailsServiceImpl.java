@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             new UsernameNotFoundException("There is no user with login: " + userLogin);
         }
 
-        if(driverDao.getById(user.getAccountId())!=null) {
+        if(driverDao.getByAccountId(user.getAccountId())!=null) {
             return new DatabaseUserDetails(user, "ROLE_DRIVER");
         }
         else {
