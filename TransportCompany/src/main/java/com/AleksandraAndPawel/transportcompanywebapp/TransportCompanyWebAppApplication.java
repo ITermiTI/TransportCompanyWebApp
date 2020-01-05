@@ -1,4 +1,4 @@
-package com.aleksandraandpawel.transportcompanywebapp;
+package com.AleksandraAndPawel.transportcompanywebapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

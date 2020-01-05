@@ -1,10 +1,7 @@
 package com.AleksandraAndPawel.transportcompanywebapp;
 
 import com.AleksandraAndPawel.transportcompanywebapp.Models.*;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.ICarsDao;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IRecipientDao;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IUserAccountsDao;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IPackagesDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +20,17 @@ class TransportCompanyWebAppApplicationTests {
 
     @Autowired
     private IPackagesDao packagesDao;
+    //dla tego testy musze zrobic
+    @Autowired
+    private IClientsDao clientsDao;
+
+    @Autowired
+    private IDriverDao driverDao;
+
+    @Autowired
+    private IReviewsDao reviewsDao;
+    @Autowired
+    private ITransportsDao transportsDao;
 
 
     @Test
@@ -44,7 +52,7 @@ class TransportCompanyWebAppApplicationTests {
         assertNotNull(recipient);
     }
     @Test
-    public void testGetDriverById()
+    public void testGetCarById()
     {
         CarsEntity car = carsDao.getById(3);
         assertNotNull(car);
@@ -80,6 +88,34 @@ class TransportCompanyWebAppApplicationTests {
        CarsEntity car = carsDao.getById(3);
        assertEquals(car.getCarStatus(),CarStatus.PRZYDZIELONO_TRANSPORT);
    }
+   //nowe testy
+   @Test
+   public void testGetClientsById()
+   {
+       ClientsEntity client =clientsDao.getById(3);
+       assertNotNull(client);
+   }
+
+    @Test
+    public void testGetDriverById()
+    {
+        DriversEntity driver =driverDao.getById(3);
+        assertNotNull(driver);
+    }
+
+    @Test
+    public void testGetReviewsById()
+    {
+        ReviewsEntity review =reviewsDao.getById(3);
+        assertNotNull(review);
+    }
+
+    @Test
+    public void testGetTransportsById()
+    {
+        TransportsEntity transports =transportsDao.getById(3);
+        assertNotNull(transports);
+    }
 
 
 }

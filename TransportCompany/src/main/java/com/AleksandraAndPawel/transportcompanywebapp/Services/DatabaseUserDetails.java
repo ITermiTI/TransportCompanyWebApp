@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,20 +18,17 @@ public class DatabaseUserDetails implements UserDetails {
     private String password;
     private boolean enabled;
     private SimpleGrantedAuthority authority;
-    @Autowired
-    IDriverDao driverDao;
 
-    public DatabaseUserDetails(UserAccountsEntity user) {
+
+    public DatabaseUserDetails(UserAccountsEntity user, String role) {
 
         userLogin=user.getLoginEmail();
         password=user.getPasswordHash();
         if(user.getIsEnabled().equals("0"))
             enabled=false;
         else enabled=true;
-        if(driverDao.getById(user.getAccountId())!=null)
-            authority=new SimpleGrantedAuthority("DRIVER");
-        else
-            authority=new SimpleGrantedAuthority("CLIENT");
+
+        authority=new SimpleGrantedAuthority(role);
     }
 
     @Override
