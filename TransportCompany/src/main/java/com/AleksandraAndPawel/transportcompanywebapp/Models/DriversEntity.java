@@ -5,6 +5,7 @@ import org.hibernate.annotations.NotFoundAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "drivers", schema = "systransport")
@@ -29,12 +30,9 @@ public class DriversEntity {
     @Basic
     @Column(name = "driver_phone_number", nullable = false, length = 255)
     private String driverPhoneNumber;
-    @Basic
-    @Column(name = "account_id", nullable = false)
-    private int accountId;
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @NotFound(action= NotFoundAction.IGNORE)
+    @JoinColumn(name = "account_id")
     private UserAccountsEntity userAccountsByAccountId;
 
 
@@ -91,45 +89,24 @@ public class DriversEntity {
         this.driverPhoneNumber = driverPhoneNumber;
     }
 
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DriversEntity that = (DriversEntity) o;
-
-        if (driverId != that.driverId) return false;
-        if (accountId != that.accountId) return false;
-        if (driverName != null ? !driverName.equals(that.driverName) : that.driverName != null) return false;
-        if (driverSurname != null ? !driverSurname.equals(that.driverSurname) : that.driverSurname != null)
-            return false;
-        if (driverEmail != null ? !driverEmail.equals(that.driverEmail) : that.driverEmail != null) return false;
-        if (driverPesel != null ? !driverPesel.equals(that.driverPesel) : that.driverPesel != null) return false;
-        if (driverPhoneNumber != null ? !driverPhoneNumber.equals(that.driverPhoneNumber) : that.driverPhoneNumber != null)
-            return false;
-
-        return true;
+        return driverId == that.driverId &&
+                Objects.equals(driverName, that.driverName) &&
+                Objects.equals(driverSurname, that.driverSurname) &&
+                Objects.equals(driverEmail, that.driverEmail) &&
+                Objects.equals(driverPesel, that.driverPesel) &&
+                Objects.equals(driverPhoneNumber, that.driverPhoneNumber) &&
+                Objects.equals(userAccountsByAccountId, that.userAccountsByAccountId);
     }
 
     @Override
     public int hashCode() {
-        int result = driverId;
-        result = 31 * result + (driverName != null ? driverName.hashCode() : 0);
-        result = 31 * result + (driverSurname != null ? driverSurname.hashCode() : 0);
-        result = 31 * result + (driverEmail != null ? driverEmail.hashCode() : 0);
-        result = 31 * result + (driverPesel != null ? driverPesel.hashCode() : 0);
-        result = 31 * result + (driverPhoneNumber != null ? driverPhoneNumber.hashCode() : 0);
-        result = 31 * result + accountId;
-        return result;
+
+        return Objects.hash(driverId, driverName, driverSurname, driverEmail, driverPesel, driverPhoneNumber, userAccountsByAccountId);
     }
 
     public UserAccountsEntity getUserAccountsByAccountId() {

@@ -11,17 +11,17 @@ public class HomeController {
     @GetMapping("/")
     public String home()
     {
-        return "<h1>Welcome</h1>";
+        return "home.html";
     }
     @GetMapping("/driver")
     public String loggedDriver()
     {
-        return "<h1>Welcome driver</h1>";
+        return "driver.html";
     }
     @GetMapping("/client")
     public  String loggedClient()
     {
-        return "<h1>Welcome Client</h1>";
+        return "client.html";
     }
 }
 

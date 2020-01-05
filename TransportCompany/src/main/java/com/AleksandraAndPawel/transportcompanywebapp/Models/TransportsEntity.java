@@ -1,11 +1,13 @@
 package com.AleksandraAndPawel.transportcompanywebapp.Models;
 
+import com.AleksandraAndPawel.transportcompanywebapp.Config.TransportStatusConverter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
-//@Entity
+@Entity
 @Table(name = "transports", schema = "systransport")
 @EntityListeners(AuditingEntityListener.class)
 public class TransportsEntity {
@@ -18,12 +20,12 @@ public class TransportsEntity {
     private String transportCity;
     @Basic
     @Column(name = "transport_status", nullable = false)
+    @Convert(converter = TransportStatusConverter.class)
     private TransportStatus transportStatus;
-    @Basic
-    @Column(name = "driver_id", nullable = true)
-    private Integer driverId;
-
+    @OneToMany(mappedBy = "transportsByTransportId")
     private Collection<PackagesEntity> packagesByTransportId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "driver_id")
     private DriversEntity driversByDriverId;
 
 
@@ -53,39 +55,22 @@ public class TransportsEntity {
         this.transportStatus = transportStatus;
     }
 
-
-    public Integer getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(Integer driverId) {
-        this.driverId = driverId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TransportsEntity that = (TransportsEntity) o;
-
-        if (transportId != that.transportId) return false;
-        if (transportCity != null ? !transportCity.equals(that.transportCity) : that.transportCity != null)
-            return false;
-        if (transportStatus != null ? !transportStatus.equals(that.transportStatus) : that.transportStatus != null)
-            return false;
-        if (driverId != null ? !driverId.equals(that.driverId) : that.driverId != null) return false;
-
-        return true;
+        return transportId == that.transportId &&
+                Objects.equals(transportCity, that.transportCity) &&
+                transportStatus == that.transportStatus &&
+                Objects.equals(packagesByTransportId, that.packagesByTransportId) &&
+                Objects.equals(driversByDriverId, that.driversByDriverId);
     }
 
     @Override
     public int hashCode() {
-        int result = transportId;
-        result = 31 * result + (transportCity != null ? transportCity.hashCode() : 0);
-        result = 31 * result + (transportStatus != null ? transportStatus.hashCode() : 0);
-        result = 31 * result + (driverId != null ? driverId.hashCode() : 0);
-        return result;
+
+        return Objects.hash(transportId, transportCity, transportStatus, packagesByTransportId, driversByDriverId);
     }
 
     public Collection<PackagesEntity> getPackagesByTransportId() {

@@ -1,14 +1,10 @@
 package com.AleksandraAndPawel.transportcompanywebapp;
 
 import com.AleksandraAndPawel.transportcompanywebapp.Models.*;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.ICarsDao;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IRecipientDao;
-import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.IUserAccountsDao;
+import com.AleksandraAndPawel.transportcompanywebapp.Repositories.API.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +17,22 @@ class TransportCompanyWebAppApplicationTests {
     IRecipientDao recipientDao;
     @Autowired
     ICarsDao carsDao;
+
+    @Autowired
+    private IPackagesDao packagesDao;
+    //dla tego testy musze zrobic
+    @Autowired
+    private IClientsDao clientsDao;
+
+    @Autowired
+    private IDriverDao driverDao;
+
+    @Autowired
+    private IReviewsDao reviewsDao;
+    @Autowired
+    private ITransportsDao transportsDao;
+
+
     @Test
     public void testGetUserById()
     {
@@ -40,7 +52,7 @@ class TransportCompanyWebAppApplicationTests {
         assertNotNull(recipient);
     }
     @Test
-    public void testGetDriverById()
+    public void testGetCarById()
     {
         CarsEntity car = carsDao.getById(3);
         assertNotNull(car);
@@ -66,10 +78,50 @@ class TransportCompanyWebAppApplicationTests {
    }*/
 
    @Test
-    public void testCarStatusMappedProperly()
-   {
+   public void testPackageEntity() {
+      PackagesEntity packagesEntity = packagesDao.getById(1);
+      assertNotNull(packagesEntity);
+   }
+
+   @Test
+   public void testCarStatusMappedProperly() {
        CarsEntity car = carsDao.getById(3);
        assertEquals(car.getCarStatus(),CarStatus.PRZYDZIELONO_TRANSPORT);
    }
+   //nowe testy
+   @Test
+   public void testGetClientsById()
+   {
+       ClientsEntity client =clientsDao.getById(3);
+       assertNotNull(client);
+   }
+
+    @Test
+    public void testGetDriverById()
+    {
+        DriversEntity driver =driverDao.getById(3);
+        assertNotNull(driver);
+    }
+
+    @Test
+    public void testGetReviewsById()
+    {
+        ReviewsEntity review =reviewsDao.getById(3);
+        assertNotNull(review);
+    }
+
+    @Test
+    public void testGetTransportsById()
+    {
+        TransportsEntity transports =transportsDao.getById(3);
+        assertNotNull(transports);
+    }
+
+    @Test
+    public void testGetDriverByAccountId() {
+       DriversEntity driversEntity = driverDao.getByAccountId(1);
+       assertNotNull(driversEntity);
+    }
+
 
 }
