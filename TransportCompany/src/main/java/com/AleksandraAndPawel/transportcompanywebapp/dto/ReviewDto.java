@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 
 public class ReviewDto {
 
-    @Min(value = 1)
-    @Max(value = 5)
-    private Integer stars;
+    private String stars;
     @NotBlank
     private String content;
     @NotNull
@@ -18,33 +16,33 @@ public class ReviewDto {
     public ReviewDto() {
     }
 
-    public ReviewDto(@Min(value = 1) @Max(value = 5) Integer stars, @NotBlank String content, @NotNull Integer packageId) {
+    public ReviewDto(String stars, @NotBlank String content, @NotNull Integer packageId) {
         this.stars = stars;
         this.content = content;
         this.packageId = packageId;
     }
 
-    public void setPackageId(Integer packageId) {
-        this.packageId = packageId;
-    }
-
-    public void setStars(Integer stars) {
-        this.stars = stars;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Integer getStars() {
+    public String getStars() {
         return stars;
+    }
+
+    public void setStars(String stars) {
+        this.stars = stars;
     }
 
     public String getContent() {
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Integer getPackageId() {
         return packageId;
+    }
+
+    public void setPackageId(Integer packageId) {
+        this.packageId = packageId;
     }
 }

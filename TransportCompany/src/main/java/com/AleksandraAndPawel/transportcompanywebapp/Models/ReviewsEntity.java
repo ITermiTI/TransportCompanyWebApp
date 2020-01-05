@@ -33,7 +33,7 @@ public class ReviewsEntity {
     }
 
 
-    public Object getStars() {
+    public String getStars() {
         return stars;
     }
 

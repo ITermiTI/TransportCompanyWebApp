@@ -28,7 +28,7 @@ public class PackageTypeConverter implements AttributeConverter<PackageType, Str
                 case "Normalne":
                     return PackageType.NORMALNE;
 
-                case "Nieodebrane":
+                case "Niebezpieczne":
                     return PackageType.NIEBEZPIECZNE;
 
                 default:
