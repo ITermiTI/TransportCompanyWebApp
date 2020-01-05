@@ -80,4 +80,6 @@ class TransportCompanyWebAppApplicationTests {
        CarsEntity car = carsDao.getById(3);
        assertEquals(car.getCarStatus(),CarStatus.PRZYDZIELONO_TRANSPORT);
    }
+
+
 }
