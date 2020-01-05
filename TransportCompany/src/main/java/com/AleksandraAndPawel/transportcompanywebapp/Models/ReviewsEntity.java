@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ReviewsEntity {
     @Id
     @Column(name = "review_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewId;
     @Basic
     @Column(name = "stars", nullable = false)
