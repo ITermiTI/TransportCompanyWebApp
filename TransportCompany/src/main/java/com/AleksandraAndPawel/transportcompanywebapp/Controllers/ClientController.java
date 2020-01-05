@@ -18,7 +18,7 @@ public class ClientController {
     @Autowired
     ReviewService reviewService;
 
-    @GetMapping("/")
+    @GetMapping
     public  String loggedClient()
     {
         return "client.html";
