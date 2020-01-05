@@ -19,6 +19,9 @@ public class DriversDao extends GenericDao<DriversEntity> implements IDriverDao 
         Query query = getSession().createQuery(hql);
         query.setParameter("account_id", accountId);
         List<DriversEntity> out = query.list();
-        return out.get(0);
+        if (out.size() == 0)
+            return null;
+        else
+            return out.get(0);
     }
 }
