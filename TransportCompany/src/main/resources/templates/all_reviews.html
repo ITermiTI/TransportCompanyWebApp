@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +12,24 @@
     <title>All reviews</title>
 </head>
 <body>
-    <th:block class="mx-auto my-2" th:each="review : ${reviews}">
-        <p th:text="${review.content}">Content</p>
-        <p th:text="${review.stars}">Stars</p>
-    </th:block>
+
+
+
+<div class="container">
+    <h2>All reviews</h2>
+    <table class="table table-bordered">
+        <thead>
+            <th:block class="mx-auto my-2" th:each="review : ${reviews}">
+            <tr>
+                <th> <p th:text="${review.content}">Content</p></th>
+                <th> <p th:text="${review.stars}">Stars</p></th>
+            </tr>
+            </th:block>
+
+        </thead>
+    </table>
+</div>
+
 </body>
+
 </html>
