@@ -33,8 +33,8 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/driver").hasRole("DRIVER")
-                .antMatchers("/client").hasRole("CLIENT")
+                .antMatchers("/driver/**").hasRole("DRIVER")
+                .antMatchers("/client/**").hasRole("CLIENT")
                 .and().formLogin();
     }
     @Bean
