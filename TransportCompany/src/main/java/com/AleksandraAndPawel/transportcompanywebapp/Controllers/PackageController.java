@@ -1,10 +1,14 @@
 package com.AleksandraAndPawel.transportcompanywebapp.Controllers;
 
 
+import com.AleksandraAndPawel.transportcompanywebapp.Models.ClientsEntity;
 import com.AleksandraAndPawel.transportcompanywebapp.Models.PackagesEntity;
+import com.AleksandraAndPawel.transportcompanywebapp.Services.ClientService;
+import com.AleksandraAndPawel.transportcompanywebapp.Services.DatabaseUserDetails;
 import com.AleksandraAndPawel.transportcompanywebapp.Services.PackageService;
 import com.AleksandraAndPawel.transportcompanywebapp.dto.PackageDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +23,9 @@ public class PackageController {
     @Autowired
     PackageService packageService;
 
+    @Autowired
+    ClientService clientService;
+
     // Dla metody GET w HTTP
     @GetMapping("/package")
     public String packageAddPage(Model model) {
@@ -26,11 +33,23 @@ public class PackageController {
         model.addAttribute("package", packageDto);
         return "add_package.html";
     }
+
     //do metody która przesyła dane z przeglądarki do serwera
     @PostMapping("/package")
     public String packageAddForm(@ModelAttribute PackageDto packageDto) {
         packageService.addPackage(packageDto);
-        return "redirect:/client/package";
+        return "redirect:/client/allPackages";
+    }
+
+    @GetMapping("/allPackages")
+    public String allPackages(Model model) {
+        DatabaseUserDetails d = (DatabaseUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ClientsEntity clientsEntity = clientService.getClientByAccountId(d.getUserAccountsEntity().getAccountId());
+        List<PackagesEntity> packagesEntities = packageService.getAllPackagesByClientId(clientsEntity.getClientId());
+
+        model.addAttribute("packages", packagesEntities);
+
+        return "all_packages.html";
     }
 
 }

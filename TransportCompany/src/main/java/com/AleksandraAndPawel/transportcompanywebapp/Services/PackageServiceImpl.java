@@ -32,8 +32,9 @@ public class PackageServiceImpl implements PackageService {
 
     @Override
     public List<PackagesEntity> getAllPackagesByClientId(int clientId) {
-        return null;
+        return packagesDao.findPackagesByClientId(clientId);
     }
+
 
     @Override
     public void addPackage(PackageDto packageDto) {
