@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome!</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Transport Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/client/edit}">Edit <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" th:href="@{/client/allReviews}">Reviews</a>
+                <a class="nav-item nav-link" th:href="@{/client/package}">Create package</a>
+                <a class="nav-item nav-link" th:href="@{/client/allPackages}">Packages</a>
+                <button class="mx-auto btn btn-primary text-white float-right">
+                    <a th:href="@{/login}" style="text-decoration: none" class="text-white">Login</a>
+                </button>
+                <!-- Sec tutaj tylko wyswietli nam guzik wylogowania jak bedziemy zalogowani -->
+                <form class="float-right" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <input type="hidden"/>
+                    <button type="submit" class="btn btn-outline-primary">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Welcome!</h1>
+
+
+    </div>
+
 </body>
 </html>

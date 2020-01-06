@@ -18,10 +18,6 @@ public class HomeController {
     {
         return "driver.html";
     }
-    @GetMapping("/client")
-    public  String loggedClient()
-    {
-        return "client.html";
-    }
+
 }
 

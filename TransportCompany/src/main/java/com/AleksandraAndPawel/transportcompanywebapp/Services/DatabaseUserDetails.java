@@ -18,6 +18,7 @@ public class DatabaseUserDetails implements UserDetails {
     private String password;
     private boolean enabled;
     private SimpleGrantedAuthority authority;
+    private UserAccountsEntity userAccountsEntity;
 
 
     public DatabaseUserDetails(UserAccountsEntity user, String role) {
@@ -29,6 +30,7 @@ public class DatabaseUserDetails implements UserDetails {
         else enabled=true;
 
         authority=new SimpleGrantedAuthority(role);
+        this.userAccountsEntity = user;
     }
 
     @Override
@@ -65,5 +67,13 @@ public class DatabaseUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public UserAccountsEntity getUserAccountsEntity() {
+        return userAccountsEntity;
+    }
+
+    public void setUserAccountsEntity(UserAccountsEntity userAccountsEntity) {
+        this.userAccountsEntity = userAccountsEntity;
     }
 }
