@@ -24,6 +24,7 @@ public class ClientController {
         return "client.html";
     }
 
+
     @GetMapping("/allReviews")
     public String allReviews(Model model) {
         List<ReviewDto> reviewDtoList = new ArrayList<>();

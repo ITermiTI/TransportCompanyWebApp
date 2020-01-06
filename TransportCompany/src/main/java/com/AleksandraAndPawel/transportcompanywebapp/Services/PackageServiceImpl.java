@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,7 +38,8 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public void addPackage(PackageDto packageDto) {
         PackagesEntity packagesEntity = new PackagesEntity();
-        packagesEntity.setPackageDate(packageDto.getPackageDate());
+        Date date = new Date();
+        packagesEntity.setPackageDate(new Timestamp(date.getTime()));
 
         packagesEntity.setPackageType(packageDto.getPackageType());
         packagesEntity.setPackageStatus(PackageStatus.ODEBRANE);
@@ -59,7 +62,9 @@ public class PackageServiceImpl implements PackageService {
         TransportsEntity transportsEntity = transportsDao.getById(1);
         packagesEntity.setTransportsByTransportId(transportsEntity);
 
+        // Automatyczne wyciagniecie zalogowanego uzytkownika
         DatabaseUserDetails d = (DatabaseUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // Na podstawie calego obiektu zalogowanego uzytkownika, bierzemy id konta tego uzytkownika (account_id)
         ClientsEntity clientsEntity = clientsDao.getClientByAccountId(d.getUserAccountsEntity().getAccountId());
         packagesEntity.setClientsByClientId(clientsEntity);
 

@@ -10,7 +10,6 @@ public class PackageDto {
     private String packageWeight;
     private String packagePrice;
     private String packagePriority;
-    private Timestamp packageDate;
 
     private String recipientName;
     private String recipientSurname;
@@ -51,14 +50,6 @@ public class PackageDto {
 
     public void setPackagePriority(String packagePriority) {
         this.packagePriority = packagePriority;
-    }
-
-    public Timestamp getPackageDate() {
-        return packageDate;
-    }
-
-    public void setPackageDate(Timestamp packageDate) {
-        this.packageDate = packageDate;
     }
 
     public String getRecipientName() {

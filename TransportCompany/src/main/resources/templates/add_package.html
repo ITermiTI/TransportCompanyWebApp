@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/main.css}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title>Add package</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add package</h2>
+
+        <h1>Add review page</h1>
+        <h2>Form</h2>
+        <form action="#" th:action="@{/client/package}" th:object="${package}" method="post">
+            <p>Package Type: <input type="text" th:field="*{packageType}" /></p>
+            <p>Package Weight: <input type="text" th:field="*{packageWeight}" /></p>
+            <p>Package Price: <input type="text" th:field="*{packagePrice}" /></p>
+            <p>Package Priority: <input type="text" th:field="*{packagePriority}" /></p>
+            <br>
+            Recipient:
+            <p>Name: <input type="text" th:field="*{recipientName}" /></p>
+            <p>Surname: <input type="text" th:field="*{recipientSurname}" /></p>
+            <p>Address: <input type="text" th:field="*{recipientAddress}" /></p>
+            <p>Phone Number: <input type="text" th:field="*{recipientPhoneNumber}" /></p>
+            <p>City: <input type="text" th:field="*{recipientCity}" /></p>
+
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            <br><h1><i class="fas fa-envelope"></i></h1>
+        </form>
+</div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+
+</body>
+</html>
