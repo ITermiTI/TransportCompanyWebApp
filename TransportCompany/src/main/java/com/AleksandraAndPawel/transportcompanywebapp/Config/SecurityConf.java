@@ -35,7 +35,9 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/driver/**").hasRole("DRIVER")
                 .antMatchers("/client/**").hasRole("CLIENT")
-                .and().formLogin();
+                .and().formLogin()
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
     @Bean
     public PasswordEncoder getPasswordEncoder() {
