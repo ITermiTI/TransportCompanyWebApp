@@ -17,15 +17,19 @@
 
 <div class="container">
     <h2>All packages</h2>
+    <p class="lead my-2" th:text="${'Sum is: ' + sum}">Sum is:</p>
     <table class="table table-bordered">
         <thead>
         <th:block class="mx-auto my-2" th:each="package : ${packages}">
             <tr>
                 <th> <p th:text="${package.packagePrice}">Price</p></th>
                 <th> <p th:text="${package.packageDate}">Date</p></th>
-                <button>
-                    <a th:href="@{/client/review(packageId=${package.packageId})}">Add review</a>
-                </button>
+                <th>
+                    <button>
+                        <a th:href="@{/client/review(packageId=${package.packageId})}">Add review</a>
+                    </button>
+                </th>
+
             </tr>
         </th:block>
 

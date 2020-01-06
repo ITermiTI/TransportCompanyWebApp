@@ -16,9 +16,9 @@
             <a th:href="@{/login}" style="text-decoration: none" class="text-white">Login</a>
         </button>
         <!-- Sec tutaj tylko wyswietli nam guzik wylogowania jak bedziemy zalogowani -->
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <form class="mt-5" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <input type="hidden"/>
-            <button type="submit" class="btn btn-outline-primary ml-sm-3">Logout</button>
+            <button type="submit" class="btn btn-outline-primary">Logout</button>
         </form>
     </div>
 

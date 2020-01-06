@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,12 @@ public class PackageController {
         ClientsEntity clientsEntity = clientService.getClientByAccountId(d.getUserAccountsEntity().getAccountId());
         List<PackagesEntity> packagesEntities = packageService.getAllPackagesByClientId(clientsEntity.getClientId());
 
+        BigDecimal sum = new BigDecimal(0);
+        for (PackagesEntity packagesEntity : packagesEntities) {
+            sum = sum.add(packagesEntity.getPackagePrice());
+        }
+
+        model.addAttribute("sum", sum.toString());
         model.addAttribute("packages", packagesEntities);
 
         return "all_packages.html";
