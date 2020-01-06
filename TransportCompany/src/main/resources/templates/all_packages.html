@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,7 +15,28 @@
 </head>
 <body>
 
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">Transport Application</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" th:href="@{/client/edit}">Edit <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" th:href="@{/client/allReviews}">Reviews</a>
+            <a class="nav-item nav-link" th:href="@{/client/package}">Create package</a>
+            <a class="nav-item nav-link" th:href="@{/client/allPackages}">Packages</a>
+            <button class="mx-auto btn btn-primary text-white float-right">
+                <a th:href="@{/login}" style="text-decoration: none" class="text-white">Login</a>
+            </button>
+            <!-- Sec tutaj tylko wyswietli nam guzik wylogowania jak bedziemy zalogowani -->
+            <form class="float-right" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <input type="hidden"/>
+                <button type="submit" class="btn btn-outline-primary">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <h2>All packages</h2>
