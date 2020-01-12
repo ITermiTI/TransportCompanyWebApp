@@ -1,4 +1,4 @@
-package com.AleksandraAndPawel.transportcompanywebapp.dto;
+package com.AleksandraAndPawel.transportcompanywebapp.Web;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

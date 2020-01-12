@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String userLogin) throws UsernameNotFoundException {
         UserAccountsEntity user = userAccountsDao.getUserByLogin(userLogin);
         if (user == null) {
-            new UsernameNotFoundException("There is no user with login: " + userLogin);
+            throw new UsernameNotFoundException("There is no user with login: " + userLogin);
         }
 
         if(driverDao.getByAccountId(user.getAccountId())!=null) {

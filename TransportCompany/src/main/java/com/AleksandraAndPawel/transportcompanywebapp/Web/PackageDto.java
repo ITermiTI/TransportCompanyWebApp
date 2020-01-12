@@ -1,15 +1,21 @@
-package com.AleksandraAndPawel.transportcompanywebapp.dto;
+package com.AleksandraAndPawel.transportcompanywebapp.Web;
 
+import com.AleksandraAndPawel.transportcompanywebapp.Models.PackageStatus;
 import com.AleksandraAndPawel.transportcompanywebapp.Models.PackageType;
 
 import java.sql.Timestamp;
 
 public class PackageDto {
 
+
+
+    private Integer packageId;
     private PackageType packageType;
     private String packageWeight;
     private String packagePrice;
     private String packagePriority;
+
+    private PackageStatus packageStatus;
 
     private String recipientName;
     private String recipientSurname;
@@ -90,5 +96,19 @@ public class PackageDto {
 
     public void setRecipientCity(String recipientCity) {
         this.recipientCity = recipientCity;
+    }
+    public Integer getPackageId() {
+        return packageId;
+    }
+
+    public void setPackageId(Integer packageId) {
+        this.packageId = packageId;
+    }
+    public PackageStatus getPackageStatus() {
+        return packageStatus;
+    }
+
+    public void setPackageStatus(PackageStatus packageStatus) {
+        this.packageStatus = packageStatus;
     }
 }

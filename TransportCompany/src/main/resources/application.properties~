@@ -5,7 +5,7 @@ server.port=8080
 datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 datasource.url= jdbc:mysql://localhost:3306/systransport?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 datasource.username=root
-datasource.password=
+datasource.password=pawel.16.
 
 # Hibernate configuration.
 hibernate.show_sql=true

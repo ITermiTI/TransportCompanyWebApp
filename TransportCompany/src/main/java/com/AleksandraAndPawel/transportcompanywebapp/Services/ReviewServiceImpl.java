@@ -3,7 +3,7 @@ package com.AleksandraAndPawel.transportcompanywebapp.Services;
 import com.AleksandraAndPawel.transportcompanywebapp.Models.ReviewsEntity;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.Implementation.PackagesDao;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.Implementation.ReviewsDao;
-import com.AleksandraAndPawel.transportcompanywebapp.dto.ReviewDto;
+import com.AleksandraAndPawel.transportcompanywebapp.Web.ReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

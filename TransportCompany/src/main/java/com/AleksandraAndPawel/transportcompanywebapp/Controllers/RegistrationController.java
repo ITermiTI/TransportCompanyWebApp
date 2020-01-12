@@ -42,7 +42,7 @@ public class RegistrationController {
 
         UserAccountsEntity existing = userDao.getUserByLogin(userDto.getEmail());
         if (existing != null){
-            result.rejectValue("email", null, "Juz jest konto zarejestrowane na tego uzytkownika");
+            result.rejectValue("email", null, "There is already an account registered using that email");
         }
 
         if (result.hasErrors()){

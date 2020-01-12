@@ -2,7 +2,7 @@ package com.AleksandraAndPawel.transportcompanywebapp.Services;
 
 import com.AleksandraAndPawel.transportcompanywebapp.Models.ClientsEntity;
 import com.AleksandraAndPawel.transportcompanywebapp.Repositories.Implementation.ClientsDao;
-import com.AleksandraAndPawel.transportcompanywebapp.dto.ClientDto;
+import com.AleksandraAndPawel.transportcompanywebapp.Web.ClientDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

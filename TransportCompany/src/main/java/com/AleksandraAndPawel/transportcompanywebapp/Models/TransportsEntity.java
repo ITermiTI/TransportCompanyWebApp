@@ -24,11 +24,20 @@ public class TransportsEntity {
     private TransportStatus transportStatus;
     @OneToMany(mappedBy = "transportsByTransportId")
     private Collection<PackagesEntity> packagesByTransportId;
+
+
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "driver_id")
     private DriversEntity driversByDriverId;
 
+    public DriversEntity getDriversByDriverId() {
+        return driversByDriverId;
+    }
 
+    public void setDriversByDriverId(DriversEntity driversByDriverId) {
+        this.driversByDriverId = driversByDriverId;
+    }
     public int getTransportId() {
         return transportId;
     }
@@ -63,14 +72,13 @@ public class TransportsEntity {
         return transportId == that.transportId &&
                 Objects.equals(transportCity, that.transportCity) &&
                 transportStatus == that.transportStatus &&
-                Objects.equals(packagesByTransportId, that.packagesByTransportId) &&
-                Objects.equals(driversByDriverId, that.driversByDriverId);
+                Objects.equals(packagesByTransportId, that.packagesByTransportId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(transportId, transportCity, transportStatus, packagesByTransportId, driversByDriverId);
+        return Objects.hash(transportId, transportCity, transportStatus, packagesByTransportId);
     }
 
     public Collection<PackagesEntity> getPackagesByTransportId() {
@@ -81,11 +89,5 @@ public class TransportsEntity {
         this.packagesByTransportId = packagesByTransportId;
     }
 
-    public DriversEntity getDriversByDriverId() {
-        return driversByDriverId;
-    }
 
-    public void setDriversByDriverId(DriversEntity driversByDriverId) {
-        this.driversByDriverId = driversByDriverId;
-    }
 }

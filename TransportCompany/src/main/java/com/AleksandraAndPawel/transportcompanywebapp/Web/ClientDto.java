@@ -1,4 +1,4 @@
-package com.AleksandraAndPawel.transportcompanywebapp.dto;
+package com.AleksandraAndPawel.transportcompanywebapp.Web;
 
 public class ClientDto {
 

@@ -6,7 +6,7 @@ import com.AleksandraAndPawel.transportcompanywebapp.Models.PackagesEntity;
 import com.AleksandraAndPawel.transportcompanywebapp.Services.ClientService;
 import com.AleksandraAndPawel.transportcompanywebapp.Services.DatabaseUserDetails;
 import com.AleksandraAndPawel.transportcompanywebapp.Services.PackageService;
-import com.AleksandraAndPawel.transportcompanywebapp.dto.PackageDto;
+import com.AleksandraAndPawel.transportcompanywebapp.Web.PackageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller()
@@ -58,5 +57,8 @@ public class PackageController {
 
         return "all_packages.html";
     }
+
+
+
 
 }

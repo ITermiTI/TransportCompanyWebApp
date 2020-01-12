@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/main.css}"/>
+    <title>Transport</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="bg-dark p-2">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/driver">Your transports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${startSuccess}">
+        <div class="alert alert-success">
+            You've successfully started your transport!
+        </div>
+    </div>
+    <div th:if="${endSuccess}">
+        <div class="alert alert-success">
+            You've successfully ended your transport!
+        </div>
+    </div>
+    <div th:if="${transportNotEnRoute}">
+        <div class="alert alert-danger">
+            Your transport isn't en route! You can't end it!
+        </div>
+    </div>
+    <div th:if="${transportStarted}">
+        <div class="alert alert-danger">
+            Your transport has already been started! You can't start it again!
+        </div>
+    </div>
+    <div th:if="${notAllDelivered}">
+        <div class="alert alert-danger">
+            Not all of your packages in the transport has been delivered! Deliver them first to end the transport!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="container p-4 my-3 text-white" style="background-color: #ebb;">
+                    <div class="d-block p-2 m-1">
+                        <p>
+                        <h5> Logged as:</h5><br>
+                        <h6 th:text="${login}"></h6>
+                        </p>
+                        <br>
+                            <div class="p-1 m-1">
+                                <a th:href="@{/driver/startTransport(transportId=${transportId})}" class="btn btn-dark btn-lg btn-block"
+                                   role="button" aria-pressed="true">Start transport</a>
+                            </div>
+                        <div class="p-1 m-1">
+                            <a th:href="@{/driver/endTransport(transportId=${transportId})}" class="btn btn-dark btn-lg btn-block"
+                               role="button" aria-pressed="true">End transport</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <h2><p th:text="${'You operate on transport number '+ transportId}">Transport</p></h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>To:</th>
+                    <th>Address:</th>
+                    <th>Weight and Type:</th>
+                    <th>Contact and Priority:</th>
+                    <th>Status:</th>
+                </tr>
+                <th:block class="mx-auto my-2" th:each="pack : ${packages}">
+                    <tr>
+                        <td> <p th:text="${pack.recipientName + ' ' + pack.recipientSurname}">Names</p></td>
+                        <td> <p th:text="${pack.recipientAddress + '   ' + pack.recipientCity}">City</p></td>
+                        <td> <p th:text="${'Weight: ' +pack.packageWeight + '   Type: ' + pack.packageType}">Packages</p></td>
+                        <td> <p th:text="${'Contact: ' +pack.recipientPhoneNumber + '   PRIO: ' + pack.packagePriority}">Priority</p></td>
+                        <td><p th:text="${pack.packageStatus}">Status</p></td>
+                        <td><a th:href="@{/driver/viewPackage(packageId=${pack.packageId},transportId=${transportId})}" class="btn btn-primary btn-lg btn-block"  role="button" aria-pressed="true">Details</a></td>
+                    </tr>
+                </th:block>
+
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

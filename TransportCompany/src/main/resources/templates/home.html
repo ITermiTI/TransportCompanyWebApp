@@ -21,14 +21,9 @@
                 <a class="nav-item nav-link" th:href="@{/client/allReviews}">Reviews</a>
                 <a class="nav-item nav-link" th:href="@{/client/package}">Create package</a>
                 <a class="nav-item nav-link" th:href="@{/client/allPackages}">Packages</a>
-                <button class="mx-auto btn btn-primary text-white float-right">
-                    <a th:href="@{/login}" style="text-decoration: none" class="text-white">Login</a>
-                </button>
-                <!-- Sec tutaj tylko wyswietli nam guzik wylogowania jak bedziemy zalogowani -->
-                <form class="float-right" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                    <input type="hidden"/>
-                    <button type="submit" class="btn btn-outline-primary">Logout</button>
-                </form>
+                <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+                <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" th:href="@{/registration}">Register</a>
+                <a class="nav-item nav-link" th:href="@{/logout}">Logout</a>
             </div>
         </div>
     </nav>

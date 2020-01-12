@@ -1,7 +1,7 @@
 package com.AleksandraAndPawel.transportcompanywebapp.Services;
 
 import com.AleksandraAndPawel.transportcompanywebapp.Models.ReviewsEntity;
-import com.AleksandraAndPawel.transportcompanywebapp.dto.ReviewDto;
+import com.AleksandraAndPawel.transportcompanywebapp.Web.ReviewDto;
 
 import java.util.List;
 

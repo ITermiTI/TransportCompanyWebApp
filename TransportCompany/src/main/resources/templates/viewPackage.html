@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/main.css}"/>
+    <title>Package</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="bg-dark p-2">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a th:href="@{/driver/transport(transportId=${transportId})}" class="nav-link" >Back to transport</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/driver">Your transports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${pickUpSuccess}">
+        <div class="alert alert-success">
+            You've successfully picked up package!
+        </div>
+    </div>
+    <div th:if="${deliverSuccess}">
+        <div class="alert alert-success">
+            You've successfully delivered package!
+        </div>
+    </div>
+    <div th:if="${transportEnRoute}">
+        <div class="alert alert-danger">
+            Your transport isn't en route! You can't pick up package, neither deliver it!
+        </div>
+    </div>
+    <div th:if="${packagePicked}">
+        <div class="alert alert-danger">
+            This package has already been picked! You can't pick it up again!
+        </div>
+    </div>
+    <div th:if="${packageDelivered}">
+        <div class="alert alert-danger">
+            This package hasn't been picked or has already been delivered! You can't deliver it!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="container p-4 my-3 text-white" style="background-color: #ebb;">
+                    <div class="d-block p-2 m-1">
+                        <p>
+                        <h5> Logged as:</h5><br>
+                        <h6 th:text="${login}"></h6>
+                        </p>
+                        <br>
+                            <div class="p-1 m-1">
+                                <a th:href="@{/driver/pickUpPackage(packageId=${package.packageId},transportId=${transportId})}" class="btn btn-dark btn-lg btn-block"
+                                   role="button" aria-pressed="true">Pick up package</a>
+                            </div>
+                        <div class="p-1 m-1">
+                            <a th:href="@{/driver/deliverPackage(packageId=${package.packageId},transportId=${transportId})}" class="btn btn-dark btn-lg btn-block"
+                               role="button" aria-pressed="true">Deliver Package</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-bordered table-striped">
+                <tr><td colspan="5"><p th:text="${'You operate on transport number '+ transportId}">Transport</p></td></tr>
+                <tr><td colspan="5"><p th:text="${'View of package numer ' + package.packageId}">Package</p></td></tr>
+                <tr><th>To:</th>
+                    <th>Address:</th>
+                    <th>Weight and Type:</th>
+                    <th>Contact and Priority:</th>
+                    <th>Status:</th>
+                </tr>
+                <tr>
+                    <td> <p th:text="${package.recipientName + ' ' + package.recipientSurname}">Names</p></td>
+                    <td> <p th:text="${package.recipientAddress + '   ' + package.recipientCity}">City</p></td>
+                    <td> <p th:text="${'Weight: ' +package.packageWeight + '   Type: ' + package.packageType}">Packages</p></td>
+                    <td> <p th:text="${'Contact: ' +package.recipientPhoneNumber + '   PRIO: ' + package.packagePriority}">Priority</p></td>
+                    <td><p th:text="${package.packageStatus}">Status</p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

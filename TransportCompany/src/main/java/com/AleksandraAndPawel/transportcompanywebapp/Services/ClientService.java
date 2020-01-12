@@ -1,7 +1,7 @@
 package com.AleksandraAndPawel.transportcompanywebapp.Services;
 
 import com.AleksandraAndPawel.transportcompanywebapp.Models.ClientsEntity;
-import com.AleksandraAndPawel.transportcompanywebapp.dto.ClientDto;
+import com.AleksandraAndPawel.transportcompanywebapp.Web.ClientDto;
 
 public interface ClientService {
 

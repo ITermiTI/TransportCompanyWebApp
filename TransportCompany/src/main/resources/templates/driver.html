@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Driver page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/main.css}"/>
+    <title>Driver</title>
+
 </head>
 <body>
-    <h1>Welcome driver!</h1>
+<div class="container">
+    <div class="bg-dark p-2">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/driver">Your transports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${transportAssigned}">
+        <div class="alert alert-success">
+            You've successfully got a new transport!
+        </div>
+    </div>
+    <div th:if="${notAllEnded}">
+        <div class="alert alert-danger">
+            Not all your transports has ended! End all your transports first to get a new one!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="container p-4 my-3 text-white" style="background-color: #ebb;">
+                    <div class="d-block p-2 m-1">
+                        <p>
+                            <h5> Logged as:</h5><br>
+                            <h6 th:text="${login}"></h6>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-bordered">
+                <thead>
+                <th:block class="mx-auto my-2" th:each="transport : ${transports}">
+                    <tr>
+                        <td> <p th:text="${'From: ' + transport.transportFrom + ' ---> To: ' +transport.transportCity}">Transport</p></td>
+                        <td> <p th:text="${'Status: ' +transport.transportStatus}">Status</p></td>
+                        <td> <p th:text="${'Number of packages: ' +transport.numberOfPackages}">Packages</p></td>
+                    </tr>
+                    <td colspan="3"><a th:href="@{/driver/transport(transportId=${transport.transportId})}" class="btn btn-primary btn-lg btn-block"  role="button" aria-pressed="true"> Details</a></td>
+
+                </th:block>
+                <tr></tr>
+                <tr><th colspan="3">FREE TRANSPORTS</th> </tr>
+                <th:block class="mx-auto my-2" th:each="transport : ${freeTransports}">
+                    <tr>
+                        <td> <p th:text="${'From: ' + transport.transportFrom + ' ---> To: ' +transport.transportCity}">Transport</p></td>
+                        <td> <p th:text="${'Status: ' +transport.transportStatus}">Status</p></td>
+                        <td> <p th:text="${'Number of packages: ' +transport.numberOfPackages}">Packages</p></td>
+                    </tr>
+                    <td colspan="3"><a th:href="@{/driver/assignTransport(transportId=${transport.transportId})}" class="btn btn-primary btn-lg btn-block"  role="button" aria-pressed="true">Assign to this transport</a></td>
+                </th:block>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
