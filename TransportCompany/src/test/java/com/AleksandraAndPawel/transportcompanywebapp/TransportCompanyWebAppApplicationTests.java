@@ -118,7 +118,7 @@ class TransportCompanyWebAppApplicationTests {
     }
 
     @Test
-    public void testGetDriverByAccountId() {
+    public void tetGetDriverByAccountId() {
        DriversEntity driversEntity = driverDao.getByAccountId(101);
        assertNotNull(driversEntity);
     }

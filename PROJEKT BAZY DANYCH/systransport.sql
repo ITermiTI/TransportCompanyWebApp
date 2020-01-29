@@ -76,7 +76,7 @@ CREATE TABLE transports
     transport_id INT AUTO_INCREMENT NOT NULL,
     transport_city NVARCHAR(255) NOT NULL,
     transport_status ENUM ('W trasie','Zakonczone','Oczekuje') NOT NULL,
-    driver_id INT,
+    driver_id INT NULL,
     PRIMARY KEY (transport_id),
 	FOREIGN KEY (driver_id)
         REFERENCES drivers(driver_id)
